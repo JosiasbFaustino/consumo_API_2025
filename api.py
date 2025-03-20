@@ -36,7 +36,7 @@ class API_Rick_Morty(API_consumer):
         try:
             dado = request.get(URL).json()
             return ((dado.get('id'), dado.get('name'), dado.get('species')))
-        except:
+        except: 
             pass
 
 class API_Star_Wars(API_consumer):
@@ -49,8 +49,12 @@ class API_Star_Wars(API_consumer):
         return self.__URL
 
     def extract(self, id):
-    # Atividade 4, que resultará o terceiro commit
-        pass
+        URL = self.URL = str(id)
+        try:
+            dado = request.get(URL).json()
+            return ((dado.get('name'), dado.get('[ film(s) ]')))
+        except:    
+            pass
 
 class API_Ice_and_Fire(API_consumer):
     ''' The universe of Ice And Fire '''
