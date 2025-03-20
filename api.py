@@ -66,6 +66,10 @@ class API_Ice_and_Fire(API_consumer):
         return self.__URL
 
     def extract(self, id):
-        # Atividade 5, que resultará o quarto commit
-        pass
+        URL = self.URL = str(id)
+        try:
+            dado = request.get(URL).json()
+            return ((dado.get('name'), dado.get('[ tvSeries ]')))
+        except:
+            pass
  
