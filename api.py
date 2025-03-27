@@ -38,9 +38,9 @@ class API_Rick_Morty(API_consumer):
 
      
         try:
-            dado1 = request.get(URL).json()
+            dado1 = requests.get(URL).json()
             return ((dado1.get('id'), dado1.get('name'), dado1.get('species')))
-        except: 
+        except:
             pass
 
 class API_Star_Wars(API_consumer):
@@ -55,8 +55,8 @@ class API_Star_Wars(API_consumer):
     def extract(self, id):
         URL = self.URL + str(id)
         try:
-            dado = request.get(URL).json()
-            return ((dado.get('name'), dado.get('[ film(s) ]')))
+            dado = requests.get(URL).json()
+            return ((dado.get('name'), dado.get('films')))
         except:    
             pass
 
@@ -72,8 +72,10 @@ class API_Ice_and_Fire(API_consumer):
     def extract(self, id):
         URL = self.URL + str(id)
         try:
-            dado = request.get(URL).json()
-            return ((dado.get('name'), dado.get('[ tvSeries ]')))
+            response = requests.get(URL)
+            response.raise_for_status()
+            dado = requests.get(URL).json()
+            return ((dado.get('name'), dado.get('tvSeries')))
         except:
             pass
- 
+            
